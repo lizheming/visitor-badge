@@ -1,0 +1,25 @@
+{
+  "name": "visitor-badge",
+  "version": "1.0.0",
+  "description": "A badge generator service to count visitors of your markdown file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizheming/visitor-badge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lizheming/visitor-badge/issues"
+  },
+  "homepage": "https://github.com/lizheming/visitor-badge#readme",
+  "dependencies": {
+    "badge-maker": "^3.3.1",
+    "dittorm": "^1.0.0-beta.0",
+    "koa": "^2.14.2"
+  }
+}

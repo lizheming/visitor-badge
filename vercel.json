@@ -1,0 +1,26 @@
+{
+  "name": "visitor-badge",
+  "github": {
+    "silent": true
+  },
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node@2.5.10"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/badge",
+      "dest": "index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.html"
+    }
+  ]
+}
