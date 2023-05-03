@@ -22,7 +22,7 @@ jobs:
 
       - name: Export Version 
         run: |
-          SPACE_VERSION=$(node -e "console.log(require('./package.json').version;")
+          SPACE_VERSION=$(node -e "console.log(require('./package.json').version);")
           SPACE_NOTES=$([ -n "${{ inputs.notes }}" ] && echo ${{ inputs.notes }})
           echo "Which version will be released？=> $SPACE_VERSION ;"
           echo "SAPCE_NOTES: $SPACE_NOTES"
