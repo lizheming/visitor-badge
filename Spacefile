@@ -1,0 +1,13 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+app_name: VisitorBadge
+icon: ./logo.png
+micros:
+  - name: badge
+    primary: true
+    src: ./
+    engine: nodejs16
+    run: "node deta.js"
+    dev: "node deta.js"
+    public_routes:
+    - /*

@@ -1,15 +1,22 @@
+const fs = require('fs');
 const Koa = require('koa');
 const Dittorm = require('dittorm');
 const { makeBadge } = require('badge-maker');
 const app = new Koa();
 
 async function counter(key) {
-  const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
-  const counterModel = new Dittorm('leancloud')('badge', {
+  const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER, DETA_PROJECT_KEY } = process.env;
+  let storage = 'leancloud';
+  if (DETA_PROJECT_KEY) {
+    storage = 'deta';
+  }
+
+  const counterModel = new Dittorm('deta')('badge', {
     appId: LEAN_ID,
     appKey: LEAN_KEY,
     masterKey: LEAN_MASTER_KEY,
     serverURL: LEAN_SERVER,
+    token: DETA_PROJECT_KEY,
   });
   const resp = await counterModel.select({ key });
   if (!Array.isArray(resp) || !resp.length) {
@@ -44,7 +51,8 @@ app.use(async (ctx, next) => {
 
 app.use(async ctx => {
   if (ctx.path !== '/badge') {
-    return;
+    const homepage = await fs.readFileSync('./index.html', 'utf-8');
+    return ctx.body = homepage;
   }
 
   const { page_id: pageId, left_color: leftColor, right_color: rightColor, left_text: leftText } = ctx.query;
